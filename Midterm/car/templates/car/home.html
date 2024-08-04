@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Car Sales{% endblock title %}
+
+{% block content %}
+
+<div class="">
+    <div class="container">
+        <div class="row mt-1">
+            <div class="col text-center d-flex flex-column justify-content-center">
+                <h3>Welcome To CarSales</h3>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consectetur pariatur fugiat beatae ut officia sint accusantium minus delectus neque, modi cupiditate culpa, id rerum quaerat, aliquam officiis aut repellat non!</p>
+            </div>
+            <img src="{% static 'img/showcase.jpg' %}" alt="no image" class="col">
+        </div>
+    </div>
+</div>
+<hr>
+
+
+<div class="container mt-5">
+    <h3 class="text-center m-3">Brands</h3>
+    <div class="d-flex justify-content-evenly m-3">
+        {% for brand in brands %}
+        <a href="{% url 'brand_wise_carlist' brand.slug %}" class="btn btn-warning">{{brand.name}}</a>
+        {% endfor %}
+    </div>
+</div>
+
+
+<div class="m-5">
+    <h4 class="m-3">{{ cars| length }} cars found</h4>
+    <div class="row g-5 text-center">
+        {% for car in cars %}
+        <div class="col-3">
+            <div class="card" style="width: 18rem;">
+                <img src="{{car.image.url}}" class="card-img-top" alt="Car" height="200px">
+                <div class="card-body">
+                    <h5 class="card-title">{{car.name}}</h5>
+                    <p class="card-text">{{car.description | truncatewords:5}}</p>
+                    <p class="card-text text-secondary">Brand: {{car.brand}}</p>
+                    <p class="card-text text-secondary">Price:{{car.price}}$</p>
+                    <a href="{% url 'car_detail' car.id %}" class="btn btn-primary">View Details</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    
+</div>
+
+{% endblock content %}
