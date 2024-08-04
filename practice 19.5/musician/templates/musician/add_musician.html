@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Add Musician{% endblock title %}
+
+{% block content %}
+
+<form method = 'post' style="width: 50%; margin: auto; margin-top: 50px;">
+    <h1 class="text-center">Add Musician</h1>
+    {% csrf_token %}
+    {{form | crispy}}
+    <input type="submit" value="Create" class="btn btn-primary">
+</form>
+
+
+{% endblock content %}

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+
+<table class="table table-striped text-center">
+    <thead>
+        <tr>
+          <th>ID</th>
+          <th>Musician Name</th>
+          <th>Email</th>
+          <th>Album Rating</th>
+          <th>Instrument Type</th>
+          <th>Album Name</th>
+          <th>Release Date</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody class="fw-normal">
+        {% for album in albums %}
+        <tr>
+            <th>{{album.id}}</th>
+            <th><a href="{% url 'edit_musician' album.artist.id %}">{{album.artist}}</a></th>
+            <th>{{album.artist.email}}</th>
+            <th>{{album.rating}}</th>
+            <th>{{album.artist.instrument_type}}</th>
+            <th>{{album}}</th>
+            <th>{{album.release_date}}</th>
+            <th>
+              {% if user.is_authenticated %}
+                <a href="{% url 'edit_album' album.id %}">Edit</a>
+                <a href="{% url 'delete_album' album.id %}" class="text-danger">Delete</a>
+              {% endif %}
+            </th>
+          </tr>
+        {% endfor %}
+      </tbody>
+  </table>
+
+
+{% endblock content %}
