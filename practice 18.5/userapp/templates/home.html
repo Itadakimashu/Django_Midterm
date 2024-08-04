@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}HomePage{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+<h3>Welcome, {{ user.first_name }} {{user.last_name}}!</h3>
+{% else %}
+<h3>Please login or register to access the site.</h3>
+{% endif %}
+
+{% block creation %}
+
+{% endblock %}
+
+{% endblock %}
